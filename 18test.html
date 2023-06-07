@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ncs18</title>
+    <style>
+        div{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+   <div>
+        <span>이름</span>
+        <input type="text" class="name" value="stu1">
+        <span>국어</span>
+        <input type="number" class="kor" value="10">
+        <span>수학</span>
+        <input type="number" class="math" value="20">
+        <span>영어</span>
+        <input type="number" class="eng" value="30">
+   </div>
+    <div>
+    <span>합 : </span><span class="plus">0</span>
+    <span>평균: </span><span class="average">0</span>
+   </div> 
+   <div>
+        <span>이름</span>
+        <input type="text" class="name" value="stu2">
+        <span>국어</span>
+        <input type="number" class="kor" value="40">
+        <span>수학</span>
+        <input type="number" class="math" value="50">
+        <span>영어</span>
+        <input type="number" class="eng" value="60"> 
+   </div>
+    <div>
+    <span>합 : </span><span class="plus">0</span>
+    <span>평균: </span><span class="average">0</span>
+   </div> 
+   <div>
+        <span>이름</span>
+        <input type="text" class="name" value="stu3">
+        <span>국어</span>
+        <input type="number" class="kor" value="70">
+        <span>수학</span>
+        <input type="number" class="math" value="80">
+        <span>영어</span>
+        <input type="number" class="eng" value="90">
+   </div>
+   <div>
+    <span>합 : </span><span class="plus">0</span>
+    <span>평균: </span><span class="average">0</span>
+   </div>
+   <button id="result1Btn">확인</button>
+
+    <script>
+        let resultBtn = document.getElementById('result1Btn');
+        let grade = array => {
+            let i = 0;
+            let result = [];
+            while(i < array.length){
+                let plus = array[i].kor + array[i].math + array[i].eng;
+                result.push({'name':`${array[i].name}`, 'plus':plus, 'average':(plus/3).toFixed(1)});
+                i++;
+            }
+            return result;
+        };
+        
+        
+        resultBtn.addEventListener('click',()=>{
+            let name = document.querySelectorAll('.name');
+            let kor = document.querySelectorAll('.kor');
+            let math = document.querySelectorAll('.math');
+            let eng = document.querySelectorAll('.eng');
+            let plus = document.querySelectorAll('.plus');
+            let average = document.querySelectorAll('.average');
+            let students = []; 
+            let i = 0;
+
+            while(i<name.length){
+                students.push({'name':name[i].value, 'kor':parseInt(kor[i].value), 'eng':parseInt(eng[i].value), 'math':parseInt(math[i].value)});
+                i++;
+            } 
+            let result = grade(students);
+             
+            i = 0;
+            while(i<result.length){
+                plus[i].innerHTML = result[i].plus;
+                average[i].innerHTML = result[i].average;
+                i++;
+            }
+        });
+
+        
+    </script>
+</body>
+</html>
